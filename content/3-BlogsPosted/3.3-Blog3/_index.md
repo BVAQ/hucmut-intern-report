@@ -1,31 +1,35 @@
 ---
-title: "Blog 3"
+title: "Blog 3 - Using Amazon EFS for a RaftDB Container on ECS Fargate"
 date: 2024-01-01
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# PERSISTENT STORAGE FOR A STATEFUL CONTAINER ON ECS FARGATE USING AMAZON EFS
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+This technical blog post addresses the persistent storage challenge for a C++23 RaftDB sidecar container running on Amazon ECS Fargate, explaining how Amazon EFS and EFS Access Points preserve the write-ahead log and application state across task replacements.
 
-Key points to know:
+### Key Technical Highlights Covered in the Blog:
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+- **The Ephemeral Storage Problem**: Explains why Fargate's task-scoped storage causes data loss on every deployment, since each **cdk deploy** or **force-new-deployment** replaces the task with a completely new one, discarding the WAL and snapshots written by RaftDB.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+- **Storage Option Analysis**: Evaluates EBS (single-attach limitation incompatible with task replacement), S3 (object storage incompatible with in-place WAL appends), and ephemeral volumes (destroyed with the task) before selecting EFS as the only POSIX-compliant, multi-attach, task-outliving storage option.
 
-...Image...
+- **EFS Access Point Identity Management**: Details how EFS Access Points enforce UID/GID ownership (**10001:10001**) and directory permissions (**0750**) at the filesystem level, eliminating the need for root privileges or **chown** entrypoint scripts in the container.
 
-...Link...
+- **IAM-Scoped Mount Authorization**: Shows how the IAM policy restricts **ClientMount** and **ClientWrite** actions to a specific Access Point ARN, preventing the task role from touching any other directory on the same file system.
 
-...Guide...
+- **Stop-Then-Start Deployment Strategy**: Describes the **minHealthyPercent: 0** and **maxHealthyPercent: 100** configuration that forces ECS to terminate the running task before starting a replacement, preventing concurrent WAL writers that would cause data corruption.
+
+- **Graceful Shutdown and Recovery Cycle**: Explains the full lifecycle from **SIGTERM** handling with a 120-second **stopTimeout** for checkpoint publication, through startup validation with snapshot verification and WAL tail replay, ensuring data integrity across every deployment.
+
+---
+
+### Facebook Community Post
+
+![Facebook Community Post](/images/3-BlogPosted/fb-post-blog3.png)
+
+- **Official Publication Link**: [AWS Study Group Facebook Post](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2228318824599744/)
+- **Target Audience**: Cloud Engineers, Backend Developers, Systems Architects
+- **Community Engagement**: Published on the AWS Study Group community platform for peer review and architectural feedback.

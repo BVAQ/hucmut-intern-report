@@ -1,32 +1,35 @@
 ---
-title: "Blog 1"
+title: "Blog 1 - Building an Auto-Scaling GitLab Runner on AWS EC2"
 date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
-includeInReport: false
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# AUTO-SCALING GITLAB CI/CD RUNNERS ON AWS EC2 WITH DOCKER AUTOSCALER AND TERRAFORM
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+This technical blog post walks through designing and deploying a self-hosted GitLab Runner that automatically provisions ephemeral EC2 workers via AWS Auto Scaling Groups, scaling to zero when idle and spinning up fresh instances on demand.
 
-Key points to know:
+### Key Technical Highlights Covered in the Blog:
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+- **Docker Autoscaler Executor**: Explains the GitLab Runner Docker Autoscaler executor model where a lightweight Runner Manager continuously polls for jobs and delegates actual build work to short-lived EC2 instances managed by the Fleeting AWS plugin.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+- **Scale-to-Zero Architecture**: Details the Auto Scaling Group configuration with **desired_capacity = 0** and **idle_count = 0**, ensuring no EC2 instances exist when no pipeline is running, reducing costs to near zero during idle periods.
 
-...Image...
+- **Single-Use Ephemeral Workers**: Describes the **capacity_per_instance = 1** and **max_use_count = 1** configuration that guarantees each EC2 instance handles exactly one job before being terminated, providing a clean and predictable build environment for every pipeline run.
 
-...Link...
+- **Terraform and Fleeting Plugin Coordination**: Addresses the dual-controller problem where Terraform creates the ASG but the Fleeting plugin manages **desired_capacity** at runtime, using **ignore_changes** in the lifecycle block to prevent configuration drift.
 
-...Guide...
+- **Pre-baked VM Images with Packer**: Describes using HashiCorp Packer to build custom Amazon Machine Images (AMIs) with Docker and the CI image pre-pulled, eliminating cold-start overhead when new workers boot.
+
+- **Prebuilt CI Docker Image via GitHub Actions**: Explains the workflow that automatically builds and publishes the CI environment image to GitHub Container Registry (GHCR), ensuring all workers share an identical, versioned build environment.
+
+---
+
+### Facebook Community Post
+
+![Facebook Community Post](/images/3-BlogPosted/fb-post-blog1.png)
+
+- **Official Publication Link**: [AWS Study Group Facebook Post](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2225051181593175/)
+- **Target Audience**: DevOps Engineers, Cloud Infrastructure Engineers, CI/CD Practitioners
+- **Community Engagement**: Published on the AWS Study Group community platform for peer review and architectural feedback.

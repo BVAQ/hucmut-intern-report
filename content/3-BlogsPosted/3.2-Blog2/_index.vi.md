@@ -1,31 +1,35 @@
 ---
-title: "Blog 2"
+title: "Blog 2 - Thiết lập xác thực OpenID Connect (OIDC) giữa GitLab CI và AWS"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# LOẠI BỎ HOÀN TOÀN STATIC KEY: BẢO MẬT PIPELINE GITLAB CI/CD BẰNG OPENID CONNECT VÀ AWS IAM
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+Bài blog kỹ thuật này giải thích cách loại bỏ AWS Access Key dài hạn khỏi pipeline CI/CD trên GitLab tự dựng bằng cách triển khai OpenID Connect (OIDC) federation, cho phép các job assume một IAM role với credential ngắn hạn được giới hạn theo project và branch cụ thể.
 
-Các điểm chính cần nắm:
+### Các điểm kỹ thuật nổi bật trong bài blog:
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+- **Kiến trúc OIDC Federation**: Giải thích cách GitLab đóng vai một OpenID Connect identity provider, phát hành JWT ngắn hạn cho mỗi job khai báo **id_tokens**, trong khi AWS IAM xác thực chữ ký token thông qua OIDC provider đã đăng ký và JWKS endpoint.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+- **Trust Policy với Subject Pinning**: Trình bày chi tiết IAM trust policy thực hiện exact-match trên claim **aud** và pattern-match trên claim **sub** (**project_path:…:ref_type:branch:ref:main**), đảm bảo chỉ đúng project và branch mới có thể assume role deploy.
 
-...Hình ảnh...
+- **Giảm thiểu phơi nhiễm Credential**: Mô tả cách chỉ 3 trong 14 job (**push-ecr**, **publish-raftdb-image**, **deploy-to-aws**) khai báo **id_tokens** và nhận AWS credential, trong khi 11 job còn lại, bao gồm cả job build image RaftDB, chạy mà không có bất kỳ identity AWS nào.
 
-...Link...
+- **Chuỗi giám hộ (Chain of Custody) cho Container Image**: Trình bày quy trình xác minh nhiều bước: image RaftDB được build mà không có AWS credential, scan bằng Trivy, chuyển giao qua artifact kèm file bằng chứng, đối chiếu từng byte sau khi upload lên ECR, và test lại từ registry trước khi deploy.
 
-...Hướng dẫn...
+- **Truy vết STS Session**: Chỉ ra cách **--role-session-name "GitLabCI-${CI_PIPELINE_ID}"** nhúng pipeline ID vào mọi entry trên CloudTrail, cho phép truy vết đầy đủ từ AWS API call ngược về pipeline CI/CD cụ thể.
+
+- **Immutable Image Tag trên ECR**: Giải thích cấu hình tag mutability trên ECR sử dụng **MUTABLE_WITH_EXCLUSION** với wildcard filter trên **raftdb-***, ngăn việc ghi đè image production đã publish trong khi các tag khác vẫn có thể di chuyển.
+
+---
+
+### Bài viết trên cộng đồng Facebook
+
+![Bài viết trên Facebook](/images/3-BlogPosted/fb-post-blog2.png)
+
+- **Link bài viết gốc**: [Bài đăng Facebook cộng đồng AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2227894604642166/)
+- **Đối tượng mục tiêu**: DevOps Engineers, Security Engineers, Cloud Architects
+- **Tương tác cộng đồng**: Được đăng trên nền tảng cộng đồng AWS Study Group để nhận phản hồi và đánh giá từ cộng đồng.

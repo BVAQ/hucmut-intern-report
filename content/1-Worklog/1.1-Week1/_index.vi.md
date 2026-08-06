@@ -1,64 +1,33 @@
 ---
 title: "Worklog Tuần 1"
-date: 2024-01-01
+date: 2026-06-15
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
-reportTableColumns:
-  - Thứ
-  - Công việc
-  - Ngày hoàn thành
-reportType: worklog
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+### Mục tiêu:
 
-### Mục tiêu tuần 1:
+* Kết nối và làm quen với các thành viên của First Cloud AI Journey (FCAJ).
+* Hiểu các dịch vụ cơ bản của AWS và điều hướng AWS Management Console & CLI.
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Nhiệm vụ:
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | ---------------------------------------------------------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
+| 1 | - Làm quen với các thành viên FCAJ.<br>- Đọc và ghi chú về nội quy, quy định của đơn vị thực tập. | 15/06/2026 | 15/06/2026 | Tài liệu Onboarding FCAJ |
+| 2 | - Tìm hiểu về AWS và các nhóm dịch vụ:<br>&emsp;+ Compute<br>&emsp;+ Storage<br>&emsp;+ Networking<br>&emsp;+ Database | 16/06/2026 | 16/06/2026 | cloudjourney.awsstudygroup.com |
+| 3 | - Tạo tài khoản AWS Free Tier.<br>- Tìm hiểu về AWS Console & AWS CLI.<br>- Thực hành:<br>&emsp;+ Tạo tài khoản AWS<br>&emsp;+ Cài đặt & cấu hình AWS CLI | 17/06/2026 | 17/06/2026 | cloudjourney.awsstudygroup.com |
+| 4 | - Tìm hiểu EC2 cơ bản:<br>&emsp;+ Các loại instance, AMI, EBS<br>- Các phương thức kết nối SSH đến EC2.<br>- Tìm hiểu về Elastic IP. | 18/06/2026 | 18/06/2026 | cloudjourney.awsstudygroup.com |
+| 5 | - Thực hành:<br>&emsp;+ Khởi chạy một EC2 instance<br>&emsp;+ Kết nối qua SSH<br>&emsp;+ Gắn một EBS volume | 19/06/2026 | 19/06/2026 | cloudjourney.awsstudygroup.com |
+| 6 | - Đọc và thảo luận whitepaper thuật toán Raft.<br>- Phân tích đặc tả dự án awsplace.<br>- Khởi tạo repository: CMakeLists.txt, presets, GoogleTest. | 15/06/2026 | 15/06/2026 | Báo cáo C++ RaftDB |
+| 7 | - Cài đặt CI/CD cơ bản (GitHub Actions).<br>- Thiết kế kiến trúc Network Server (epoll/kqueue).<br>- Soạn thảo PROTOCOL.md.<br>- Định nghĩa Error Codes và cơ chế Leader Redirect. | 15/06/2026 | 15/06/2026 | Báo cáo C++ RaftDB |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Thành tựu:
 
-
-### Kết quả đạt được tuần 1:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hoàn thành xuất sắc quá trình onboarding AWS và nắm vững các khái niệm điện toán đám mây nền tảng, đặc biệt là các dịch vụ Compute, Storage, Networking và Database.
+* Thiết lập thành công môi trường phát triển AWS hoàn chỉnh, bao gồm tài khoản Free Tier được cấu hình chuẩn, quyền truy cập AWS Management Console và thiết lập AWS CLI bảo mật.
+* Thể hiện kỹ năng thực hành vững vàng thông qua việc khởi chạy và kết nối thành công với Amazon EC2 instance qua SSH, cũng như gắn và quản lý các EBS volumes.
+* Đặt nền móng vững chắc cho dự án RaftDB C++ bằng cách xây dựng hệ thống build mạnh mẽ với CMake và Ninja, tích hợp đầy đủ các preset biên dịch (ASan, UBSan, Release, Fuzz).
+* Thiết kế kiến trúc mạng ban đầu cho server tận dụng các mô hình I/O bất đồng bộ (asynchronous non-blocking) hiệu năng cao (epoll/kqueue) nhằm tối ưu hóa tốc độ xử lý.
+* Soạn thảo chi tiết các đặc tả kỹ thuật, bao gồm tài liệu đặc tả Protocol cho giao tiếp nhị phân và định nghĩa trước các mã lỗi (Error Codes) cho cơ chế Leader Redirect.
+* Tự động hóa quy trình phát triển bằng cách tích hợp GitHub Actions (CI/CD), đảm bảo mọi commit đều được tự động kiểm tra bản build và chạy unit tests.

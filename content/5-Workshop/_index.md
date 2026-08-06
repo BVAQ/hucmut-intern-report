@@ -6,27 +6,22 @@ chapter: false
 pre: " <b> 5. </b> "
 includeInReport: false
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Secure Hybrid Access to S3 using VPC Endpoints
 
-#### Overview
+# Deploying awsplace: From Blank Account to Production
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+This workshop walks through every operational step required to deploy, test, monitor, and tear down **awsplace** — a real-time collaborative pixel canvas served over WebSocket. It covers the full deployment lifecycle: prerequisites, infrastructure-as-code, CI/CD pipeline, deployment, testing, monitoring, and cleanup.
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
-
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+For a high-level overview of the architecture, AWS services used, and what you will build, see [5.1 Workshop Overview](5.1-Workshop-overview/).
 
 #### Content
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
-6. [Clean up](5.6-Cleanup/)
+1. [Workshop overview](5.1-Workshop-overview/)
+2. [Prerequisites](5.2-Prerequisites/)
+3. [CDK Project Structure](5.3-CDK-Project-Structure/)
+4. [CI/CD Pipeline](5.4-CICD-Pipeline/)
+5. [Deploy Infrastructure](5.5-Deploy-Infrastructure/)
+6. [Deploy Frontend](5.6-Deploy-Frontend/)
+7. [Test & Validate](5.7-Test-and-Validate/)
+8. [Monitoring](5.8-Monitoring/)
+9. [Cleanup](5.9-Cleanup/)

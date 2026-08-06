@@ -1,39 +1,29 @@
 ---
 title: "Worklog"
-date: 2024-01-01
+date: 2026-06-15
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+## Introduction
 
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
+This worklog summarizes my internship activities in the **First Cloud AI Journey (FCAJ)** program from **15 June 2026** to **31 July 2026**, covering a total of **seven weeks**.
 
-Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
+During the seven weeks, I focused on completing the assigned **Final Workshop**, including learning AWS services, developing the project, testing the system, and preparing the Workshop Report. The Final Workshop was successfully submitted before the official deadline on **31 July 2026**.
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+The following pages present a detailed weekly worklog, including the objectives, completed tasks, and achievements throughout the internship.
 
-**Week 2:** [Doing task A...](1.2-week2/)
+---
 
-**Week 3:** [Doing task B...](1.3-week3/)
+## Internship Timeline
 
-**Week 4:** [Doing task C...](1.4-week4/)
-
-**Week 5:** [Doing task D...](1.5-week5/)
-
-**Week 6:** [Doing task E...](1.6-week6/)
-
-**Week 7:** [Doing task G...](1.7-week7/)
-
-**Week 8:** [Doing task H...](1.8-week8/)
-
-**Week 9:** [Doing task I...](1.9-week9/)
-
-**Week 10:** [Doing task L...](1.10-week10/)
-
-**Week 11:** [Doing task M...](1.11-week11/)
-
-**Week 12:** [Doing task N...](1.12-week12/)
+| Week | Period | Main Activities |
+|:---|:---|:---|
+| [**Week 1**](1.1-week1/) | 15/06/2026 – 21/06/2026 | Internship onboarding, AWS fundamentals, development environment setup, AWS account configuration |
+| [**Week 2**](1.2-week2/) | 22/06/2026 – 28/06/2026 | Learn core AWS services, design the project architecture, initialize the Final Workshop |
+| [**Week 3**](1.3-week3/) | 29/06/2026 – 05/07/2026 | Develop cloud infrastructure using AWS CDK and implement the initial project components |
+| [**Week 4**](1.4-week4/) | 06/07/2026 – 12/07/2026 | Continue implementing project features, integrate AWS services and perform functional testing |
+| [**Week 5**](1.5-week5/) | 13/07/2026 – 19/07/2026 | Complete remaining project modules, optimize the application and begin writing the Workshop Report |
+| [**Week 6**](1.6-week6/) | 20/07/2026 – 26/07/2026 | Finalize project implementation, complete documentation and prepare the Workshop Report |
+| [**Week 7**](1.7-week7/) | 27/07/2026 – 31/07/2026 | Review the project, finalize documentation and submit the Final Workshop |

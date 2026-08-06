@@ -1,67 +1,33 @@
 ---
 title: "Week 1 Worklog"
-date: 2024-01-01
+date: 2026-06-15
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
-includeInReport: true
-reportTableColumns:
-  - Day
-  - Task
-  - Completion Date
-reportHeadings:
-  - Week 1 Objectives
-  - Tasks to be carried out this week
-  - Week 1 Achievements
-reportType: worklog
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Objectives:
 
-### Week 1 Objectives:
+* Connect and get acquainted with members of First Cloud AI Journey (FCAJ).
+* Understand fundamental AWS services and navigate the AWS Management Console & CLI.
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---------------------------------------------------------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
+| 1 | - Get acquainted with FCAJ members<br>- Read and take notes on internship unit rules and regulations | 06/15/2026 | 06/15/2026 | FCAJ Onboarding Docs |
+| 2 | - Learn about AWS and its service categories:<br>&emsp;+ Compute<br>&emsp;+ Storage<br>&emsp;+ Networking<br>&emsp;+ Database | 06/16/2026 | 06/16/2026 | cloudjourney.awsstudygroup.com |
+| 3 | - Create AWS Free Tier account<br>- Learn about AWS Console & AWS CLI<br>- Practice:<br>&emsp;+ Create AWS account<br>&emsp;+ Install & configure AWS CLI | 06/17/2026 | 06/17/2026 | cloudjourney.awsstudygroup.com |
+| 4 | - Learn basic EC2:<br>&emsp;+ Instance types, AMI, EBS<br>- SSH connection methods to EC2<br>- Learn about Elastic IP | 06/18/2026 | 06/18/2026 | cloudjourney.awsstudygroup.com |
+| 5 | - Practice:<br>&emsp;+ Launch an EC2 instance<br>&emsp;+ Connect via SSH<br>&emsp;+ Attach an EBS volume | 06/19/2026 | 06/19/2026 | cloudjourney.awsstudygroup.com |
+| 6 | - Read and discuss Raft algorithm whitepaper.<br>- Analyze awsplace project specifications.<br>- Initialize repository: CMakeLists.txt, presets, GoogleTest. | 06/15/2026 | 06/15/2026 | RaftDB C++ Report |
+| 7 | - Setup CI/CD (GitHub Actions).<br>- Design Network Server architecture (epoll/kqueue).<br>- Draft PROTOCOL.md.<br>- Define Error Codes and Leader Redirect mechanism. | 06/15/2026 | 06/15/2026 | RaftDB C++ Report |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Achievements:
 
-
-### Week 1 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully navigated the AWS onboarding process and gained a robust understanding of fundamental cloud computing concepts, specifically Compute, Storage, Networking, and Database services.
+* Established a fully functional AWS development environment, including a well-configured Free Tier account, AWS Management Console access, and a secured AWS CLI setup.
+* Demonstrated hands-on proficiency by launching and connecting to an Amazon EC2 instance via SSH, as well as successfully attaching and managing EBS volumes.
+* Laid the foundational architecture for the RaftDB C++ project by establishing a robust build system utilizing CMake and Ninja, complete with various compilation presets (ASan, UBSan, Release, Fuzz).
+* Engineered the initial network server architecture leveraging highly efficient asynchronous non-blocking I/O models (epoll/kqueue) to ensure optimal performance.
+* Drafted comprehensive technical specifications, including the Protocol specification document for binary communication and predefined Error Codes for Leader Redirect mechanisms.
+* Automated the development workflow by integrating GitHub Actions for continuous integration, ensuring all unit tests and builds are validated upon every commit.

@@ -1,31 +1,35 @@
 ---
-title: "Blog 3"
+title: "Blog 3 - Sử dụng Amazon EFS cho container RaftDB trên ECS Fargate"
 date: 2024-01-01
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# LƯU TRỮ BỀN VỮNG CHO CONTAINER STATEFUL TRÊN ECS FARGATE SỬ DỤNG AMAZON EFS
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+Bài blog kỹ thuật này giải quyết bài toán lưu trữ bền vững cho sidecar container C++23 RaftDB chạy trên Amazon ECS Fargate, giải thích cách Amazon EFS và EFS Access Points bảo toàn write-ahead log cùng trạng thái ứng dụng qua mỗi lần thay thế task.
 
-Các điểm chính cần nắm:
+### Các điểm kỹ thuật nổi bật trong bài blog:
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+- **Bài toán Ephemeral Storage**: Giải thích vì sao storage phạm vi task của Fargate gây mất dữ liệu ở mỗi lần deploy, khi mỗi **cdk deploy** hoặc **force-new-deployment** thay task bằng một task hoàn toàn mới, xóa sạch WAL và snapshot mà RaftDB đã ghi.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+- **Phân tích các lựa chọn Storage**: Đánh giá EBS (giới hạn single-attach không tương thích với việc thay thế task), S3 (object storage không tương thích với ghi WAL tại chỗ), và ephemeral volume (bị hủy cùng task) trước khi chọn EFS là lựa chọn duy nhất vừa tuân thủ POSIX, vừa hỗ trợ multi-attach và sống lâu hơn task.
 
-...Hình ảnh...
+- **Quản lý Identity qua EFS Access Point**: Trình bày cách EFS Access Point áp đặt quyền sở hữu UID/GID (**10001:10001**) và permission thư mục (**0750**) ở cấp filesystem, loại bỏ nhu cầu quyền root hoặc script entrypoint chạy **chown** trong container.
 
-...Link...
+- **Phân quyền Mount theo IAM**: Chỉ ra cách IAM policy giới hạn action **ClientMount** và **ClientWrite** vào đúng một Access Point ARN cụ thể, ngăn task role chạm vào bất kỳ thư mục nào khác trên cùng file system.
 
-...Hướng dẫn...
+- **Chiến lược Deploy Stop-Then-Start**: Mô tả cấu hình **minHealthyPercent: 0** và **maxHealthyPercent: 100** buộc ECS phải dừng task đang chạy trước khi khởi tạo task thay thế, ngăn hai writer cùng ghi vào WAL gây hỏng dữ liệu.
+
+- **Chu trình Graceful Shutdown và Recovery**: Giải thích toàn bộ vòng đời từ xử lý **SIGTERM** với **stopTimeout** 120 giây để xuất checkpoint, qua kiểm tra startup với xác minh snapshot và replay phần cuối WAL, đảm bảo tính toàn vẹn dữ liệu qua mỗi lần deploy.
+
+---
+
+### Bài viết trên cộng đồng Facebook
+
+![Bài viết trên Facebook](/images/3-BlogPosted/fb-post-blog3.png)
+
+- **Link bài viết gốc**: [Bài đăng Facebook cộng đồng AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2228318824599744/)
+- **Đối tượng mục tiêu**: Cloud Engineers, Backend Developers, Systems Architects
+- **Tương tác cộng đồng**: Được đăng trên nền tảng cộng đồng AWS Study Group để nhận phản hồi và đánh giá từ cộng đồng.

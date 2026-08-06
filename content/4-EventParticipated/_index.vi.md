@@ -4,44 +4,31 @@ date: 2024-01-01
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
-includeInReport: false
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong quá trình tham gia khóa thực tập và đào tạo thực tế, em đã có cơ hội trải nghiệm 2 sự kiện (event) vô cùng đặc biệt. Mỗi sự kiện không chỉ mang lại những kiến thức chuyên sâu về công nghệ đám mây (AWS) và AI mà còn là những bài học xương máu về kỹ năng sinh tồn trong thị trường lao động.
 
-> Trong phần này, các bạn cần liệt kê và mô tả chi tiết các sự kiện (event) mà mình đã tham gia trong suốt quá trình thực tập hoặc làm việc. 
-> 
-> Mỗi sự kiện nên được trình bày theo định dạng Event 1, Event 2, Event 3…, kèm theo các thông tin:
-> * Tên sự kiện
-> * Thời gian tổ chức
-> * Địa điểm (nếu có)
-> * Vai trò của bạn trong sự kiện (người tham dự, hỗ trợ tổ chức, diễn giả, v.v.)
-> * Mô tả ngắn gọn nội dung và hoạt động chính trong sự kiện
-> * Kết quả hoặc giá trị đạt được (bài học, kỹ năng mới, đóng góp cho nhóm/dự án)
-> * Việc liệt kê này giúp thể hiện rõ sự tham gia thực tế của bạn, cũng như các kỹ năng mềm và kinh nghiệm bạn đã tích lũy qua từng sự kiện.
+### [Event 1: Agentic AI Build Week (AABW) Hackathon](4.1-Event1/)
+&emsp;**Tên sự kiện:** Agentic AI Build Week (AABW) Hackathon
 
+&emsp;**Thời gian:** 25/07/2026
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
-
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
-
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+&emsp;**Địa điểm:** Văn phòng Amazon Web Services, Tầng 26 tòa nhà Bitexco TPHCM
 
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
+&emsp;**Nội dung chính:** Lắng nghe và phân tích kiến trúc của 4 đội xuất sắc nhất ứng dụng Amazon Bedrock AgentCore để giải quyết các bài toán thực tế (F&B, Camera AI, SA Native App, Intelligence Dashboard). Đúc kết các bài học về kiến trúc Event-Driven, FinOps và chiến lược làm sản phẩm.
 
 
-### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+---
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+### [Event 2: AWS - Enterprise Cloud Architectures and Industry Application](4.2-Event2/)
+&emsp;**Tên sự kiện:** AWS - Enterprise Cloud Architectures and Industry Application
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+&emsp;**Thời gian:** 04/07/2026
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+&emsp;**Địa điểm:** Văn phòng Amazon Web Services, Tầng 26 tòa nhà Bitexco TPHCM
 
+&emsp;**Vai trò trong sự kiện:** Người tham dự
+
+&emsp;**Nội dung chính:** Một "Study Tour" thực chiến giúp thu hẹp khoảng cách giữa giảng đường và doanh nghiệp. Bao gồm 4 phiên chia sẻ từ các chuyên gia hàng đầu về bức tranh thị trường IT hiện đại, kiến trúc Data Platform, cách đi tìm thế mạnh "độc bản" của bản thân và tư duy đúng đắn trong kỷ nguyên AI.
