@@ -107,7 +107,7 @@ Logic deploy, được điều phối bởi GitHub Actions trong job **deploy**,
 
 CDK tổng hợp các TypeScript construct thành CloudFormation template và deploy tất cả tài nguyên. Flag **--import-existing-resources** cho phép CDK tái adopt các resource có physical name rõ ràng nếu stack được tạo lại sau failure.
 
-> ![AwsplaceStack trong CloudFormation](/images/5-Workshop/5.5-Deploy-Infrastructure/Screenshot%202026-07-27%20194430.png)
+> ![AwsplaceStack trong CloudFormation](/images/5-Workshop/5.5-Deploy-Infrastructure/Screenshot-2026-07-27-194430.png)
 
 4. **Deploy Frontend trên Amplify:** Sau khi hạ tầng backend ổn định, pipeline đóng gói static asset từ **dist/** thành file zip và upload trực tiếp lên Amplify qua pre-signed S3 URL. (Quy trình này được trình bày chi tiết ở phần tiếp theo.)
 

@@ -107,7 +107,7 @@ The deployment logic, orchestrated by GitHub Actions in the **deploy** job, foll
 
 CDK synthesizes the TypeScript constructs into a CloudFormation template and deploys all resources. The **--import-existing-resources** flag allows CDK to re-adopt resources with explicit physical names if the stack was recreated after a failure.
 
-> ![AwsplaceStack in CloudFormation](/images/5-Workshop/5.5-Deploy-Infrastructure/Screenshot%202026-07-27%20194430.png)
+> ![AwsplaceStack in CloudFormation](/images/5-Workshop/5.5-Deploy-Infrastructure/Screenshot-2026-07-27-194430.png)
 
 4. **Amplify Frontend Deployment:** Once backend infrastructure is stable, the pipeline packages the static assets from **dist/** into a zip file and uploads them directly to Amplify via pre-signed S3 URL. (This process is covered in detail in the next section.)
 

@@ -58,6 +58,6 @@ The deployment step in the CI/CD pipeline is a multi-command script that orchest
 
 6. **Wait for Completion:** The script enters a **while** loop, polling deployment status every 10 seconds with **aws amplify get-job**. It checks for **SUCCEED** or **FAILED** status. A 10-minute timeout prevents the job from running indefinitely if something goes wrong.
 
-> ![Amplify Deployment Jobs](/images/5-Workshop/5.6-Deploy-Frontend/Screenshot%202026-07-27%20200851.png)
+> ![Amplify Deployment Jobs](/images/5-Workshop/5.6-Deploy-Frontend/Screenshot-2026-07-27-200851.png)
 
 Once the deployment succeeds, the frontend is live and globally distributed through Amplify's CDN. The CI/CD pipeline proceeds to the next step — updating the ECS service and running post-deploy verification.

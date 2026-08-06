@@ -58,6 +58,6 @@ Bước deploy trong pipeline CI/CD là script nhiều lệnh điều phối vi�
 
 6. **Chờ hoàn thành:** Script đi vào vòng lặp **while**, thăm dò trạng thái deploy mỗi 10 giây bằng **aws amplify get-job**. Nó kiểm tra trạng thái **SUCCEED** hoặc **FAILED**. Timeout 10 phút được đặt ra để ngăn job chạy vô thời hạn nếu có sự cố.
 
-> ![Các Job Deploy trên Amplify](/images/5-Workshop/5.6-Deploy-Frontend/Screenshot%202026-07-27%20200851.png)
+> ![Các Job Deploy trên Amplify](/images/5-Workshop/5.6-Deploy-Frontend/Screenshot-2026-07-27-200851.png)
 
 Khi deployment thành công, frontend đã live và được phân phối toàn cầu qua CDN của Amplify. Pipeline CI/CD tiếp tục sang bước tiếp theo — cập nhật ECS service và chạy kiểm tra sau deploy.
